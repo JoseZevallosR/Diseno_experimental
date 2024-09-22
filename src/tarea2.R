@@ -28,13 +28,11 @@ datazoo <- zoo(readr::parse_number(aa$V3) / 10, order.by = dates)
 # Calcular la media mensual
 mes_temp <- aggregate(datazoo, format(index(datazoo), "%Y-%m"), mean)
 
-# Convertir a yearmon
-mes_temp <- zoo(coredata(mes_temp), order.by = as.yearmon(rownames(mes_temp)))
-
 # Separar las temperaturas de 2022 y 2023
 temp_2022 <- mes_temp[1:12]
 temp_2023 <- mes_temp[13:24]
 
+#plot(index(mes_temp),coredata(mes_temp),xlab="Fecha",ylab="Temperatura",main="Temperatura promedio mensual - Chachapoyas 2022-2023",lwd=4, pch = 19,type="b",cex.lab=1.5, cex.axis=2, cex.main=2.5,col="brown1")
 # Realizar el test de t de Student
 t_test_result <- t.test(coredata(temp_2022), coredata(temp_2023), var.equal = TRUE)
 
