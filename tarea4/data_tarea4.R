@@ -1,6 +1,7 @@
 # Load necessary library
 library(dplyr)
 library(agricolae)
+library(car) # Para la verificación de suposiciones
 
 # Crear el dataframe original con los valores medios y la desviación estándar
 data <- data.frame(
@@ -53,6 +54,8 @@ summary(res.aov)
 # Si hay normalidad en nuestros datos
 aov_residuals = residuals(res.aov)
 shapiro.test(aov_residuals)
+#QQ-plot para verificar normalidad
+qqPlot(aov_residuals, main = "QQ-Plot de Residuos")
 
 bartlett.test(Valor ~ Variable, data = data_expanded)
 bartlett.test(Valor ~ Tratamiento, data = data_expanded)
