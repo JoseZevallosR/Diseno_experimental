@@ -99,6 +99,25 @@ effects_interaction <- ggplot(intEf, aes(x = Intensidad_Pastoreo, y = Valor, col
 # Mostrar el gráfico
 print(effects_interaction)
 
-# Anova para Factorial 2
-res.aov <- aov(Valor ~ Intensidad_Pastoreo + Psuelo + Intensidad_Pastoreo * Psuelo, data = data_expanded)
-summary(res.aov)
+# Datos necesarios Tratamiento
+alpha <- 0.05    # Nivel de significancia
+a <- 4           # Número de tratamientos
+df_error <- 30   # Grados de libertad asociados al error (ν)
+
+# Obtención del valor crítico de q
+q_critico <- qtukey(p = 1 - alpha, nmeans = a, df = df_error)
+
+# Mostrar el valor crítico de q
+q_critico
+
+# Datos necesarios Bloque
+alpha <- 0.05    # Nivel de significancia
+a <- 3           # Número de bloques
+df_error <- 30   # Grados de libertad asociados al error (ν)
+
+# Obtención del valor crítico de q
+q_critico <- qtukey(p = 1 - alpha, nmeans = a, df = df_error)
+
+# Mostrar el valor crítico de q
+q_critico
+
