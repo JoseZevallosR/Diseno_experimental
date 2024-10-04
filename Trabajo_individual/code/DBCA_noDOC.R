@@ -68,9 +68,11 @@ lmtest::dwtest(res.aov)
 
 tukeyMetodo1 = HSD.test(res.aov, "Intensidad_Pastoreo", alpha = 0.05, group = T)
 plot(tukeyMetodo1, variation = "IQR")
+print(tukeyMetodo1)
 
 tukeyMetodo2 = HSD.test(res.aov, "Psuelo", alpha = 0.05, group = T)
 plot(tukeyMetodo2, variation = "IQR")
+print(tukeyMetodo2)
 
 # Cargar la librería ggplot2
 library(ggplot2)
