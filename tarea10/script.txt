@@ -1,0 +1,79 @@
+## Factoriales Fraccionados Plackett-Burman (12 factores - 20 corridas experimentales)
+
+# Dr. Christian R. Encina Zelada
+
+# Lectura de datos
+
+d1<-read.table("DFF Plackett-Burman.csv", 
+
+               header = T,  sep=";",  dec=".")# lectura de datos
+
+head(d1) # presentacion de datos
+
+attach(d1)
+
+
+
+Bo<-as.factor(d1$Bo)
+
+Ca<-as.factor(d1$Ca)
+
+Co<-as.factor(d1$Co)
+
+Cu<-as.factor(d1$Cu)
+
+Fe<-as.factor(d1$Fe)
+
+K<-as.factor(d1$K)
+
+Mg<-as.factor(d1$Mg)
+
+Mn<-as.factor(d1$Mn)
+
+Mo<-as.factor(d1$Mo)
+
+Na<-as.factor(d1$Na)
+
+Ni<-as.factor(d1$Ni)
+
+Zn<-as.factor(d1$Zn)
+
+BSC<-as.numeric(d1$BSC) #biosurfactant concentration
+
+attach(d1)
+
+
+
+#Analisis de Varianza
+
+ANOVA<-aov(BSC~(Bo+Ca+Co+Cu+Fe+K+Mg+Mn+Mo+Na+Ni+Zn), data = d1)
+
+summary(ANOVA)
+
+
+
+ANOVA2<-aov(BSC~(Bo+Cu+Fe+Ni+Zn), data = d1)
+
+anova(ANOVA2)
+
+
+
+library(agricolae)
+
+cv.model(ANOVA2)
+
+
+
+# ========================= #
+
+# GRAFICA DE EFECTOS PRINCIPALES #
+
+# ========================= #
+
+# Efectos Principales sobre la Variable Respuesta BSC 
+
+#install.packages("FrF2")
+
+library(FrF2)
+
+MEPlot(ANOVA, lwd = par("lwd"))
