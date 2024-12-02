@@ -2,6 +2,7 @@
 library(rsm)
 library(rgl)
 library(scatterplot3d)
+library(ggplot2)
 setwd("D:/Proyectos_GitHub/Diseno_experimental/tarea12")
 
 # Cargar los datos del sistema Kanban/CONWIP
